@@ -1,0 +1,58 @@
+
+Este projeto foi criado da seguinte maneira:
+
+1) Instalar o python3
+```sh
+apt-get update
+apt-get install python3 
+apt-get install -y libpq-dev gcc
+```
+
+2) Instalar instalar os pacotes
+```sh
+pip3 install -r requirements.txt
+```
+
+3) Executar com [CMD]
+```sh
+/code/startup.sh
+```
+
+4) Para acessar:
+- http://<ip_servidor>:8080/admin
+- Usuario: proway
+- Senha: proway
+
+5) Para acessar via API:
+- http://<IP>:8080/api-auth/login/
+- Usuario: proway
+- Senha: proway
+
+
+
+Querido dev/infra/devops/sre/especialista :)
+
+Este projeto tem as seguintes definições:
+- Rota na porta 8080 ( precisa ter esta porta exportada [exposed] )
+- Usamos sempre a pasta [/code] para desenvolvimento, use-a no servidor de produção e homologação
+- Usamos a imagem de docker [python:3.11-slim]
+- Copiamos todos os arquivos para dentro do container usando [COPY]
+- Rodamos o comando definido nos passos 2, 3
+- Temos as seguintes variaveis de ambiente:
+    DBNAME=proway
+    DBUSER=proway
+    DBPASS=proway
+    DBHOST=postgres
+
+Pode montar um Dockerfile bonitão por favor?
+
+Se puder montar um compose para nos ajudar também ( rodando apenas o Dockerfile não conseguimos, com o compose ele sobe tudo e nos ajudará):
+- Monta pra nós um serviço de banco com o nome postgres, vai conectar direto.
+- Atualmente rodamos o banco da seguinte manteira: 
+```sh 
+docker run -e POSTGRES_USER=proway -e POSTGRES_PASSWORD=proway -e POSTGRES_DB=proway -v ./db_local:/var/lib/postgresql/data -p 5432:5432 postgres 
+```
+
+Obs: Um colega sugeriu começar pelo docker compose, subindo o banco de dados primeiro, depois montar o docker file.
+
+
